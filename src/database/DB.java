@@ -2,23 +2,34 @@ package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
 public class DB {
 
+	/*
+	 * Handelt die eigene Instance.
+	 * Es kann keine neue Instance erstellt werden.
+	 * Aufruf über DB.getInstance()
+	 * 
+	 * Zur Initialisierung muss connectToDB() aufgerufen werden.
+	 * 
+	 * 
+	 * 
+	 */
+	
 	private static DB instance;	
 	private static String serverName;
 	private static String dbName;
 	private static String userName;
 	private static String userPassword;
 	private static String connectionString;
-	private static int serverPort;
+	private static int serverPort = 0;
 	
 	
 	
@@ -69,14 +80,18 @@ public class DB {
 	}
 	
 	public DefaultTableModel tableSelect(String sql){
+		
+		if(!isConnected())
+			return null;
+		
 		Connection con = null;
-		Statement st = null;
+		PreparedStatement st = null;
 		ResultSet rs = null;
 		DefaultTableModel tb = null;
 		try {
 			con = DriverManager.getConnection(connectionString, userName, userPassword);
-			st = con.createStatement();
-			rs = st.executeQuery(sql);
+			st = con.prepareStatement(sql);
+			rs = st.executeQuery();
 			
 			tb = buildTableModel(rs);
 		} catch (SQLException e) {
@@ -86,13 +101,13 @@ public class DB {
 				rs.close();
 				st.close();
 				con.close();
-				System.out.println("TEST2");
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}			
 		}
 		
-		System.out.println(tb.getValueAt(1, 0));
+		
 		return tb;
 		
 	}
@@ -122,11 +137,26 @@ public class DB {
 
 	}
 	
+	/*
+	 * Gibt den Skalarwert für das ausgeführte Select aus
+	 */
 	public Object objectSelect(String sql){
 	
 		
 		return tableSelect(sql).getValueAt(1, 0);
 		
+		
+	}
+	
+	
+	private boolean isConnected(){
+		
+		return serverName != null
+				&& dbName != null 
+				&& userName != null 
+				&& userPassword != null 
+				&& connectionString != null 
+				&& serverPort != 0;
 		
 	}
 	
