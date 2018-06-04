@@ -42,7 +42,7 @@ public class AuftragListRender extends JPanel implements ListCellRenderer<Object
 
     }
 
-    public AuftragListRender(){};
+    AuftragListRender(){}
 
     @Override
     public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
