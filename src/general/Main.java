@@ -1,6 +1,8 @@
 package general;
 
 import database.DB;
+import gui.Window;
+import gui.home.MainPanel;
 
 public class Main {
 
@@ -14,8 +16,10 @@ public class Main {
     public static void main(String[] args){
     	
     	
-    	DB.getInstance().connectToDB(server, port, database, user, password);
-    	
+    	//DB.getInstance().connectToDB(server, port, database, user, password);
+		Window.getInstance().loadView(new MainPanel());
+		Window.getInstance().toggleVisible();
+
     }
 	
 }

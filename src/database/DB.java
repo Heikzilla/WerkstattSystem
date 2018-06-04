@@ -15,7 +15,7 @@ public class DB {
 	/*
 	 * Handelt die eigene Instance.
 	 * Es kann keine neue Instance erstellt werden.
-	 * Aufruf über DB.getInstance()
+	 * Aufruf ueber DB.getInstance()
 	 * 
 	 * Zur Initialisierung muss connectToDB() aufgerufen werden.
 	 * 
@@ -138,7 +138,7 @@ public class DB {
 	}
 	
 	/*
-	 * Gibt den Skalarwert für das ausgeführte Select aus
+	 * Gibt den Skalarwert fuer das ausgefuehrte Select aus
 	 */
 	public Object objectSelect(String sql){
 	
