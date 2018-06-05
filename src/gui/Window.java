@@ -1,8 +1,9 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
 import java.awt.Point;
-import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -26,6 +27,7 @@ public class Window extends JFrame {
         centerWindow();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+        //pack();
 
     }
 
@@ -48,7 +50,7 @@ public class Window extends JFrame {
         WIDTH = width;
         HEIGHT = height;
 
-        setSize(WIDTH,HEIGHT);
+        setSize(new Dimension(WIDTH,HEIGHT));
 
     }
 
@@ -66,9 +68,9 @@ public class Window extends JFrame {
 
     private void initScreenVars(){
 
-        Toolkit defTK = Toolkit.getDefaultToolkit();
-        SCREEN_WIDTH = defTK.getScreenSize().width;
-        SCREEN_HEIGHT = defTK.getScreenSize().height;
+    	GraphicsEnvironment defTK = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        SCREEN_WIDTH = defTK.getMaximumWindowBounds().width;
+        SCREEN_HEIGHT = defTK.getMaximumWindowBounds().height;
 
 
     }

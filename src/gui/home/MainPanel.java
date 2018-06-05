@@ -20,14 +20,14 @@ public class MainPanel extends JPanel {
         c.weightx = 1/5;
         c.weighty = 1.0;
         c.fill = GridBagConstraints.BOTH;
-        c.anchor = GridBagConstraints.EAST;
+        //c.anchor = GridBagConstraints.EAST;
         add(new ControlPanel(),c);
         
         c.gridx = 1;
-        c.weightx = 5/5;
+        c.weightx = 1.0;
         
         
-        add(new AuftragPanel(width, height),c);
+        add(new AuftragPanel(width*3/5, height),c);
 
     }
 

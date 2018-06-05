@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import controller.c_auftrag;
 import controller.c_kfz;
 
 public class AuftragAnlegen extends JFrame {
