@@ -119,7 +119,7 @@ public class KundenAnlegen extends JFrame {
 				
 				//TODO neuerKunde in Datenbank speichern
 				//INSERT INTO kunde (neuerKunde.getVorname(), )
-				String sql = ""
+				String sql = "";
 				
 				DB.getInstance().tableInsert(sql);
 			}

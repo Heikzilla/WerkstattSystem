@@ -54,7 +54,7 @@ public class c_auftrag {
     
     public DefaultTableModel getAuftragListAsTable(){
     	
-    	String sql = "SELECT * FROM auftrag";
+    	String sql = "SELECT * FROM auftraege";
     	
     	return DB.getInstance().tableSelect(sql);
     	

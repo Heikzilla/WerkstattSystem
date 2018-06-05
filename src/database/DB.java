@@ -109,6 +109,8 @@ public class DB {
 	
 	public DefaultTableModel tableSelect(String sql){
 		
+		System.out.println(isConnected());
+		
 		if(!isConnected())
 			return null;
 		
@@ -134,7 +136,7 @@ public class DB {
 				e.printStackTrace();
 			}			
 		}
-		
+		System.out.println(tb.getValueAt(0, 0));
 		
 		return tb;
 		
@@ -160,6 +162,8 @@ public class DB {
 	        }
 	        data.add(vector);
 	    }
+	    
+	    
 
 	    return new DefaultTableModel(data, columnNames);
 
