@@ -17,9 +17,9 @@ public class KundenAnlegen extends JFrame {
 	private JTextField txtFldVorname;
 	private JTextField txtldNachname;
 	private JTextField txtFldOrt;
-	private JTextField txtFldPLZ;
 	private JTextField txtFldStrasse;
 	private JTextField txtFldHausnummer;
+	private JTextField txtFldPLZ;
 
 	/**
 	 * Launch the application.
@@ -89,10 +89,9 @@ public class KundenAnlegen extends JFrame {
 		txtFldOrt.setColumns(10);
 		
 		txtFldPLZ = new JTextField();
-		txtFldPLZ.setText("");
+		txtFldPLZ.setColumns(10);
 		txtFldPLZ.setBounds(92, 83, 86, 20);
 		contentPane.add(txtFldPLZ);
-		txtFldPLZ.setColumns(10);
 		
 		txtFldStrasse = new JTextField();
 		txtFldStrasse.setBounds(92, 108, 86, 20);
