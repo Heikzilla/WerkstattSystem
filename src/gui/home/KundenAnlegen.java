@@ -132,7 +132,7 @@ public class KundenAnlegen extends JFrame {
 		});
 		btnKundeAnlegen.setBounds(92, 172, 103, 23);
 		contentPane.add(btnKundeAnlegen);
-		//ficken
+		
 		
 	}
 }
