@@ -1,6 +1,7 @@
 package controller;
 
 import general.Auftrag;
+import general.Kfz;
 
 import java.util.ArrayList;
 
@@ -26,30 +27,27 @@ public class c_auftrag {
     }
 
 
-    public ArrayList<Auftrag> getAuftragList(){
+    public ArrayList<Auftrag> getAuftragList(String filter){    	
 
-        //FOR TESTING REMOVED
-        //return new ArrayList<Auftrag>();
+        String sql = "SELECT * FROM auftraege "+filter;        	
+        DefaultTableModel tbl = DB.getInstance().tableSelect(sql);
+        	
+        ArrayList<Auftrag> returnList = new ArrayList<>();
+        
+        for(int rowID = 0; rowID < tbl.getRowCount(); rowID ++){
+    		returnList.add(new Auftrag(
+    				 (Integer)tbl.getValueAt(rowID,0) //Auftrag_ID
+    				,(String)tbl.getValueAt(rowID,1)  //Arbeiten
+    				,(Boolean)tbl.getValueAt(rowID,2)  //Erledigt
+    				,(Integer)tbl.getValueAt(rowID,3))//Kfz_ID
+    		);
+        }
 
-        return randomAuftragList();
-
-    }
-
-
-    //TESTING
-    private ArrayList<Auftrag> randomAuftragList(){
-
-        ArrayList<Auftrag> ret = new ArrayList<>();
-        ret.add(new Auftrag(0,"TEST 1", false, 0));
-        ret.add(new Auftrag(1,"TEST 2", false, 1));
-        ret.add(new Auftrag(2,"TEST 3", true, 1));
-        ret.add(new Auftrag(3,"TEST 4", false, 2));
-        ret.add(new Auftrag(4,"TEST 5", true, 3));
-        ret.add(new Auftrag(5,"TEST 6", false, 4));
-
-        return ret;
+        return returnList;        
 
     }
+
+
     
     
     public DefaultTableModel getAuftragListAsTable(){
@@ -60,7 +58,6 @@ public class c_auftrag {
 	 +", auftraege.arbeiten AS Bemerkung"
 	 +", CONCAT(kunde.vorname,' ', kunde.nachname) AS 'K. Name'"
 	 +", kunde.kunde_ID AS 'K. ID'"
-	 +", CASE WHEN auftraege.erledigt = true THEN 'Erledigt' ELSE 'Offen' END AS 'Status'"
 	 +" FROM auftraege"
 	 +" INNER JOIN kfz ON auftraege.kfz_ID = kfz.kfz_ID"
 	 +" INNER JOIN kunde ON kunde.kunde_ID = kfz.kunde_ID";

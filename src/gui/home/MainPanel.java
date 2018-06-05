@@ -1,5 +1,6 @@
 package gui.home;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -9,8 +10,9 @@ public class MainPanel extends JPanel {
 
 
 
-    public MainPanel(){
+    public MainPanel(int width, int height){
 
+    	setPreferredSize(new Dimension(width,height));
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.gridx = 0;
@@ -24,7 +26,8 @@ public class MainPanel extends JPanel {
         c.gridx = 1;
         c.weightx = 5/5;
         
-        add(new AuftragPanel(),c);
+        
+        add(new AuftragPanel(width, height),c);
 
     }
 

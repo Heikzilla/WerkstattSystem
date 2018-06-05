@@ -17,7 +17,7 @@ public class Main {
     	
     	
     	DB.getInstance().connectToDB(server, port, database, user, password);
-		Window.getInstance().loadView(new MainPanel());
+		Window.getInstance().loadView(new MainPanel(Window.getInstance().getWidth(),Window.getInstance().getHeight()));
 		Window.getInstance().toggleVisible();
 
     }

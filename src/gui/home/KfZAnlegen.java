@@ -93,7 +93,7 @@ public class KfZAnlegen extends JFrame {
 		
 		JComboBox<Kunde> cmbBxKunde = new JComboBox<>();
 		
-		for(Kunde k : c_kunde.getInstance().getKundeList()){
+		for(Kunde k : c_kunde.getInstance().getKundeList("")){
 			cmbBxKunde.addItem(k);
 		}
 		

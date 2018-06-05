@@ -1,8 +1,11 @@
 package controller;
 
 import general.Kfz;
+import general.Kunde;
 
 import java.util.ArrayList;
+
+import javax.swing.table.DefaultTableModel;
 
 import database.DB;
 
@@ -24,14 +27,24 @@ public class c_kfz {
     }
 
 
-    public ArrayList<Kfz> getKfzList(){
+    public ArrayList<Kfz> getKfzList(String filter){
 
-        //FOR TESTING REMOVED
-        //return new ArrayList<Auftrag>();
+    	String sql = "SELECT * FROM kfz "+filter;    	
+    	DefaultTableModel tbl = DB.getInstance().tableSelect(sql);
+    	
+    	ArrayList<Kfz> returnList = new ArrayList<>();
+    	
+    	for(int rowID = 0; rowID < tbl.getRowCount(); rowID ++){
+			returnList.add(new Kfz(
+					 (Integer)tbl.getValueAt(rowID,0) //Kfz_Id
+					,(String)tbl.getValueAt(rowID,1)  //Marke
+					,(String)tbl.getValueAt(rowID,2)  //Modell
+					,(String)tbl.getValueAt(rowID,3)  //Kennzeichen
+					,(Integer)tbl.getValueAt(rowID,4))//Kunden_ID
+			);
+    	}
 
-        //return DB.getInstance().kundeSelect("SELECT * FROM kunde");
-
-    	return null;
+        return returnList;
     }
     
     public void addKfzToDB(Kfz neuesKfz){

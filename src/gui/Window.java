@@ -21,7 +21,8 @@ public class Window extends JFrame {
 
     private Window(){
 
-        setWindowSize(600,600);
+    	initScreenVars();
+        setWindowSize(SCREEN_WIDTH,SCREEN_HEIGHT);
         centerWindow();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -42,6 +43,8 @@ public class Window extends JFrame {
 
     public void setWindowSize(int width, int height){
 
+    	
+    	
         WIDTH = width;
         HEIGHT = height;
 
@@ -52,8 +55,8 @@ public class Window extends JFrame {
 
     public void centerWindow(){
 
-        initScreenVars();
-
+        
+    	initScreenVars();
 
         LOCATION = new Point(SCREEN_WIDTH/2-WIDTH/2,SCREEN_HEIGHT/2-HEIGHT/2);
         setLocation(LOCATION);
