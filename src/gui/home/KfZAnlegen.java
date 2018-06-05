@@ -57,35 +57,35 @@ public class KfZAnlegen extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblMarke = new JLabel("Marke:");
-		lblMarke.setBounds(10, 11, 46, 14);
+		lblMarke.setBounds(10, 11, 68, 14);
 		contentPane.add(lblMarke);
 		
 		JLabel lblModell = new JLabel("Modell:");
-		lblModell.setBounds(10, 36, 46, 14);
+		lblModell.setBounds(10, 36, 68, 14);
 		contentPane.add(lblModell);
 		
 		JLabel lblKennzeichen = new JLabel("Kennzeichen:");
-		lblKennzeichen.setBounds(10, 61, 68, 14);
+		lblKennzeichen.setBounds(10, 61, 86, 14);
 		contentPane.add(lblKennzeichen);
 		
 		txtFldMarke = new JTextField();
-		txtFldMarke.setBounds(105, 8, 86, 20);
+		txtFldMarke.setBounds(140, 8, 86, 20);
 		contentPane.add(txtFldMarke);
 		txtFldMarke.setColumns(10);
 		
 		txtFldModell = new JTextField();
-		txtFldModell.setBounds(105, 33, 86, 20);
+		txtFldModell.setBounds(140, 33, 86, 20);
 		contentPane.add(txtFldModell);
 		txtFldModell.setColumns(10);
 		
 		txtFldKennzeichen = new JTextField();
 		txtFldKennzeichen.setText("");
-		txtFldKennzeichen.setBounds(105, 58, 86, 20);
+		txtFldKennzeichen.setBounds(140, 58, 86, 20);
 		contentPane.add(txtFldKennzeichen);
 		txtFldKennzeichen.setColumns(10);
 		
 		JLabel lblKunde = new JLabel("Kunde:");
-		lblKunde.setBounds(10, 103, 46, 14);
+		lblKunde.setBounds(10, 103, 68, 14);
 		contentPane.add(lblKunde);
 		
 		
@@ -99,7 +99,7 @@ public class KfZAnlegen extends JFrame {
 		
 		
 		cmbBxKunde.setMaximumRowCount(24);
-		cmbBxKunde.setBounds(66, 100, 139, 20);
+		cmbBxKunde.setBounds(87, 100, 139, 20);
 		contentPane.add(cmbBxKunde);
 		
 		JButton btnKfzAnlegen = new JButton("KfZ anlegen");
