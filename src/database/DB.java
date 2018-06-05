@@ -79,6 +79,34 @@ public class DB {
 
 	}
 	
+	public void tableInsert(String sql){
+		
+		if(!isConnected())
+			return;
+		
+		Connection con = null;
+		PreparedStatement st = null;
+		try {
+			con = DriverManager.getConnection(connectionString, userName, userPassword);
+			st = con.prepareStatement(sql);
+			st.execute();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+			
+				st.close();
+				con.close();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}			
+		}
+		
+	}
+	
 	public DefaultTableModel tableSelect(String sql){
 		
 		if(!isConnected())
