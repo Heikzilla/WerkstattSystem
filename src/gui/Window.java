@@ -1,7 +1,12 @@
 package gui;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Point;
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 public class Window extends JFrame {
 
@@ -19,6 +24,7 @@ public class Window extends JFrame {
         setWindowSize(600,600);
         centerWindow();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
 
     }
 
@@ -74,7 +80,7 @@ public class Window extends JFrame {
     public void loadView(JPanel pane){
 
         getContentPane().removeAll();
-        getContentPane().add(pane);
+        getContentPane().add(pane, BorderLayout.LINE_START);
 
     }
 
