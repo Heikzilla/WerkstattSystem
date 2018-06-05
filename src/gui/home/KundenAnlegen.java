@@ -117,9 +117,15 @@ public class KundenAnlegen extends JFrame {
 				neuerKunde.setStrasse(txtFldVorname.getText());
 				neuerKunde.setHausnummer(txtFldHausnummer.getText());
 				
-				//TODO neuerKunde in Datenbank speichern
-				//INSERT INTO kunde (neuerKunde.getVorname(), )
-				String sql = "";
+				// neuerKunde in Datenbank speichern
+				
+				String sql = "INSERT INTO kunde (" + neuerKunde.getVorname() +
+						", " + "'" + neuerKunde.getNachname() + "'" + 
+						", " + "'" + neuerKunde.getOrt() + "'" + 
+						", " + neuerKunde.getPlz() + 
+						", " + "'" + neuerKunde.getStrasse() + "'" + 
+						", " + "'" + neuerKunde.getHausnummer() + "'" +
+						");";
 				
 				DB.getInstance().tableInsert(sql);
 			}
