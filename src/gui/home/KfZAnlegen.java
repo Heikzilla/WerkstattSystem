@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import controller.c_kfz;
 import controller.c_kunde;
 
 public class KfZAnlegen extends JFrame {
@@ -107,7 +108,8 @@ public class KfZAnlegen extends JFrame {
 				neuesKfz.setMarke(txtFldMarke.getText());
 				neuesKfz.setModell(txtFldModell.getText());
 				neuesKfz.setKennzeichen(txtFldKennzeichen.getText());
-				// TODO neuesKfz.setKunde_ID(cmbBxKunde.getText());
+				neuesKfz.setKunde_ID(((Kunde)cmbBxKunde.getSelectedItem()).getKunde_ID());
+				c_kfz.getInstance().addKfzToDB(neuesKfz);
 			}
 		});
 		btnKfzAnlegen.setBounds(81, 131, 89, 23);
