@@ -7,6 +7,12 @@ public class Kfz {
 	private String modell;
 	private String kennzeichen;
 	private int kunde_ID;
+	
+	
+
+	public Kfz() {
+		super();
+	}
 
 	public Kfz(int kfz_ID, String marke, String modell, String kennzeichen,
 			int kunde_ID) {

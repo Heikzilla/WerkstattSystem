@@ -1,15 +1,18 @@
 package gui.home;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import gui.Colorscheme;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class KfZAnlegen extends JFrame {
 
@@ -43,6 +46,7 @@ public class KfZAnlegen extends JFrame {
 		setBounds(100, 100, 217, 226);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(Colorscheme.controlLightGray);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -84,6 +88,15 @@ public class KfZAnlegen extends JFrame {
 		contentPane.add(cmbBxKunde);
 		
 		JButton btnKfzAnlegen = new JButton("KfZ anlegen");
+		btnKfzAnlegen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				general.Kfz neuesKfz = new general.Kfz();
+				neuesKfz.setMarke(txtFldMarke.getText());
+				neuesKfz.setModell(txtFldModell.getText());
+				neuesKfz.setKennzeichen(txtFldKennzeichen.getText());
+				// TODO neuesKfz.setKunde_ID(cmbBxKunde.getText());
+			}
+		});
 		btnKfzAnlegen.setBounds(81, 131, 89, 23);
 		contentPane.add(btnKfzAnlegen);
 	}
