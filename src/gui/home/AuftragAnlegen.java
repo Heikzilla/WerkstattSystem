@@ -1,21 +1,25 @@
 package gui.home;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import general.Kfz;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
+
+import controller.c_kfz;
 
 public class AuftragAnlegen extends JFrame {
 
 	private JPanel contentPane;
+	private static AuftragAnlegen frame;
 
 	/**
 	 * Launch the application.
@@ -24,7 +28,8 @@ public class AuftragAnlegen extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AuftragAnlegen frame = new AuftragAnlegen();
+					frame = new AuftragAnlegen();
+					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +51,7 @@ public class AuftragAnlegen extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblZuErledigendeArbeiten = new JLabel("Zu erledigende Arbeiten:");
-		lblZuErledigendeArbeiten.setBounds(10, 11, 119, 14);
+		lblZuErledigendeArbeiten.setBounds(10, 11, 138, 14);
 		contentPane.add(lblZuErledigendeArbeiten);
 		
 		JTextArea txtAreaArbeiten = new JTextArea();
@@ -54,21 +59,30 @@ public class AuftragAnlegen extends JFrame {
 		contentPane.add(txtAreaArbeiten);
 		
 		JComboBox cmbBxKennzeichen = new JComboBox();
-		cmbBxKennzeichen.setBounds(193, 172, 28, 20);
+		
+		for(Kfz k : c_kfz.getInstance().getKfzList("")){
+			cmbBxKennzeichen.addItem(k);
+		}
+		cmbBxKennzeichen.setBounds(100, 172, 121, 20);
 		contentPane.add(cmbBxKennzeichen);
 		
 		JButton btnAuftragAnlegen = new JButton("Auftrag anlegen");
 		btnAuftragAnlegen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				general.Auftrag neuerAuftrag = new general.Auftrag();
+				neuerAuftrag.setArbeiten(txtAreaArbeiten.getText());
+				neuerAuftrag.setKfz_ID(((Kfz)cmbBxKennzeichen.getSelectedItem()).getKfz_ID());
+				c_auftrag.getInstance().addAuftragToDB(neuerAuftrag);
+				frame.dispose();
 				
-				//TODO: Funktionalität belegen
+				
 			}
 		});
-		btnAuftragAnlegen.setBounds(110, 203, 111, 23);
+		btnAuftragAnlegen.setBounds(69, 203, 152, 23);
 		contentPane.add(btnAuftragAnlegen);
 		
 		JLabel lblKennzeichen = new JLabel("Kennzeichen:");
-		lblKennzeichen.setBounds(35, 175, 74, 14);
+		lblKennzeichen.setBounds(10, 175, 91, 14);
 		contentPane.add(lblKennzeichen);
 	}
 }

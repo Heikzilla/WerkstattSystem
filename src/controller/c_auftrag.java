@@ -67,5 +67,16 @@ public class c_auftrag {
     	return DB.getInstance().tableSelect(sql);
     	
     }
+    
+public void addAuftragToDB(Auftrag neuerAuftrag){
+    	
+    	String sql = "INSERT INTO auftraege "
+				+ "(arbeiten, kfz_ID, erledigt) VALUES "
+				+ " (" + "'" + neuerAuftrag.getArbeiten()+ "'" + 
+				", " + "'" + neuerAuftrag.getKfz_ID() + "'" + 
+				", false );";
+				
+    	DB.getInstance().tableInsert(sql);
+	}
 
 }

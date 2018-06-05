@@ -64,4 +64,10 @@ public class Kfz {
 		this.kunde_ID = kunde_ID;
 	}
 	
+	@Override
+	public String toString(){
+		
+		return kennzeichen;
+	}
+	
 }
