@@ -2,6 +2,10 @@ package general;
 
 public class Kunde {
 
+	public Kunde() {
+		super();
+	}
+
 	private int kunde_ID;
 	private String vorname;
 	private String nachname;

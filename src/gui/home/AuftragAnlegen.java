@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AuftragAnlegen extends JFrame {
 
@@ -56,6 +58,12 @@ public class AuftragAnlegen extends JFrame {
 		contentPane.add(cmbBxKennzeichen);
 		
 		JButton btnAuftragAnlegen = new JButton("Auftrag anlegen");
+		btnAuftragAnlegen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//TODO: Funktionalität belegen
+			}
+		});
 		btnAuftragAnlegen.setBounds(110, 203, 111, 23);
 		contentPane.add(btnAuftragAnlegen);
 		

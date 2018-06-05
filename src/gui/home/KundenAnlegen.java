@@ -1,21 +1,24 @@
 package gui.home;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import database.DB;
 
 public class KundenAnlegen extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField txtFldVorname;
-	private JTextField txtldNachname;
+	private JTextField txtFldNachname;
 	private JTextField txtFldOrt;
 	private JTextField txtFldStrasse;
 	private JTextField txtFldHausnummer;
@@ -78,10 +81,10 @@ public class KundenAnlegen extends JFrame {
 		contentPane.add(txtFldVorname);
 		txtFldVorname.setColumns(10);
 		
-		txtldNachname = new JTextField();
-		txtldNachname.setBounds(92, 33, 86, 20);
-		contentPane.add(txtldNachname);
-		txtldNachname.setColumns(10);
+		txtFldNachname = new JTextField();
+		txtFldNachname.setBounds(92, 33, 86, 20);
+		contentPane.add(txtFldNachname);
+		txtFldNachname.setColumns(10);
 		
 		txtFldOrt = new JTextField();
 		txtFldOrt.setBounds(92, 58, 86, 20);
@@ -104,6 +107,23 @@ public class KundenAnlegen extends JFrame {
 		txtFldHausnummer.setColumns(10);
 		
 		JButton btnKundeAnlegen = new JButton("Kunde anlegen");
+		btnKundeAnlegen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				general.Kunde neuerKunde = new general.Kunde(); 
+				neuerKunde.setVorname(txtFldVorname.getText());
+				neuerKunde.setNachname(txtFldNachname.getText());
+				neuerKunde.setOrt(txtFldOrt.getText());
+				neuerKunde.setPlz(Integer.parseInt(txtFldPLZ.getText()));
+				neuerKunde.setStrasse(txtFldVorname.getText());
+				neuerKunde.setHausnummer(txtFldHausnummer.getText());
+				
+				//TODO neuerKunde in Datenbank speichern
+				//INSERT INTO kunde (neuerKunde.getVorname(), )
+				String sql = ""
+				
+				DB.getInstance().tableInsert(sql);
+			}
+		});
 		btnKundeAnlegen.setBounds(92, 172, 103, 23);
 		contentPane.add(btnKundeAnlegen);
 		
