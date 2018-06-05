@@ -4,6 +4,10 @@ import general.Auftrag;
 
 import java.util.ArrayList;
 
+import javax.swing.table.DefaultTableModel;
+
+import database.DB;
+
 public class c_auftrag {
 
     private static c_auftrag INSTANCE;
@@ -45,6 +49,15 @@ public class c_auftrag {
 
         return ret;
 
+    }
+    
+    
+    public DefaultTableModel getAuftragListAsTable(){
+    	
+    	String sql = "SELECT * FROM auftrag";
+    	
+    	return DB.getInstance().tableSelect(sql);
+    	
     }
 
 }
