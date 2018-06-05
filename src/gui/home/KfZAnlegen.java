@@ -97,7 +97,7 @@ public class KfZAnlegen extends JFrame {
 		
 		
 		cmbBxKunde.setMaximumRowCount(24);
-		cmbBxKunde.setBounds(139, 100, 280, 20);
+		cmbBxKunde.setBounds(52, 100, 139, 20);
 		contentPane.add(cmbBxKunde);
 		
 		JButton btnKfzAnlegen = new JButton("KfZ anlegen");
