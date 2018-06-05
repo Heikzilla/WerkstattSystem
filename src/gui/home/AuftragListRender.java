@@ -3,11 +3,21 @@ package gui.home;
 import general.Auftrag;
 import gui.Colorscheme;
 
-import javax.swing.*;
-import javax.swing.border.AbstractBorder;
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
-public class AuftragListRender extends JPanel implements ListCellRenderer<Object> {
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.border.AbstractBorder;
+import javax.swing.table.TableCellRenderer;
+
+public class AuftragListRender extends JPanel implements TableCellRenderer {
 
     private JLabel l_Nr;
     private JLabel l_Name;
@@ -44,10 +54,7 @@ public class AuftragListRender extends JPanel implements ListCellRenderer<Object
 
     AuftragListRender(){}
 
-    @Override
-    public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-        return new AuftragListRender((Auftrag) value,isSelected);
-    }
+    
 
 
 
@@ -75,6 +82,13 @@ public class AuftragListRender extends JPanel implements ListCellRenderer<Object
 
         return border;
     }
+
+	@Override
+	public Component getTableCellRendererComponent(JTable table, Object value,
+			boolean isSelected, boolean hasFocus, int row, int column) {
+
+		return new AuftragListRender((Auftrag) value,isSelected);
+	}
 
 
 

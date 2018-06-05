@@ -6,7 +6,7 @@ import javax.swing.*;
 
 class AuftragPanel extends JPanel {
 
-    private JList<Object> list;
+    private JTable list;
 
     AuftragPanel(){
 
@@ -17,8 +17,8 @@ class AuftragPanel extends JPanel {
 
     private void initComp(){
 
-        list = new JList<>(c_auftrag.getInstance().getAuftragList().toArray());
-        list.setCellRenderer(new AuftragListRender());
+        list = new JTable(c_auftrag.getInstance().getAuftragListAsTable());
+        //list.setDefaultRenderer(null, new AuftragListRender());
         add(new JScrollPane(list));
 
     }
