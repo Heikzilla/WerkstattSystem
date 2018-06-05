@@ -49,7 +49,7 @@ public class KfZAnlegen extends JFrame {
 	public KfZAnlegen() {
 		setTitle("KfZ anlegen");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 217, 226);
+		setBounds(100, 100, 252, 257);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(Colorscheme.controlLightGray);
@@ -69,18 +69,18 @@ public class KfZAnlegen extends JFrame {
 		contentPane.add(lblKennzeichen);
 		
 		txtFldMarke = new JTextField();
-		txtFldMarke.setBounds(81, 8, 86, 20);
+		txtFldMarke.setBounds(105, 8, 86, 20);
 		contentPane.add(txtFldMarke);
 		txtFldMarke.setColumns(10);
 		
 		txtFldModell = new JTextField();
-		txtFldModell.setBounds(81, 33, 86, 20);
+		txtFldModell.setBounds(105, 33, 86, 20);
 		contentPane.add(txtFldModell);
 		txtFldModell.setColumns(10);
 		
 		txtFldKennzeichen = new JTextField();
 		txtFldKennzeichen.setText("");
-		txtFldKennzeichen.setBounds(81, 58, 86, 20);
+		txtFldKennzeichen.setBounds(105, 58, 86, 20);
 		contentPane.add(txtFldKennzeichen);
 		txtFldKennzeichen.setColumns(10);
 		
@@ -99,7 +99,7 @@ public class KfZAnlegen extends JFrame {
 		
 		
 		cmbBxKunde.setMaximumRowCount(24);
-		cmbBxKunde.setBounds(52, 100, 139, 20);
+		cmbBxKunde.setBounds(66, 100, 139, 20);
 		contentPane.add(cmbBxKunde);
 		
 		JButton btnKfzAnlegen = new JButton("KfZ anlegen");
@@ -114,7 +114,7 @@ public class KfZAnlegen extends JFrame {
 				frame.dispose();
 			}
 		});
-		btnKfzAnlegen.setBounds(81, 131, 89, 23);
+		btnKfzAnlegen.setBounds(81, 131, 110, 34);
 		contentPane.add(btnKfzAnlegen);
 	}
 }
