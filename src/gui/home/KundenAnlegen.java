@@ -1,5 +1,7 @@
 package gui.home;
 
+import gui.Colorscheme;
+
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -49,6 +51,7 @@ public class KundenAnlegen extends JFrame {
 		setBounds(100, 100, 233, 245);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(Colorscheme.controlLightGray);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
