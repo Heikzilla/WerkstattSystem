@@ -22,7 +22,7 @@ public class MainPanel extends JPanel {
         add(new ControlPanel(),c);
         
         c.gridx = 1;
-        c.weightx = 4/5;
+        c.weightx = 5/5;
         
         add(new AuftragPanel(),c);
 

@@ -1,11 +1,14 @@
 package database;
 
+import general.Kunde;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +35,13 @@ public class DB {
 	private static int serverPort = 0;
 	
 	
+	private static final String server = "localhost";
+	private static final String database = "autoreparaturDB";
+	private static final String user = "root";
+	private static final String password = "";
+	private static final int port = 3306;
+	
+	
 	
 	private DB(){
 		
@@ -47,6 +57,8 @@ public class DB {
 
 			e.printStackTrace();
 		}
+		
+		connectToDB(server, port, database, user, password);
 		
 	}
 	
@@ -190,6 +202,63 @@ public class DB {
 				&& connectionString != null 
 				&& serverPort != 0;
 		
+	}
+	
+	public ArrayList<Kunde> kundeSelect(String sql){
+		
+		Connection con = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		ArrayList<Kunde> list = null;
+		try {
+			con = DriverManager.getConnection(connectionString, userName, userPassword);
+			st = con.prepareStatement(sql);
+			rs = st.executeQuery();
+			
+			list = new ArrayList<Kunde>(buildKundeList(rs));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				st.close();
+				con.close();
+				System.out.println("TEST2");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}			
+		}
+		
+		
+		return list;
+		
+	}
+
+	private ArrayList<Kunde> buildKundeList(ResultSet rs)throws SQLException {
+		
+		
+		DefaultTableModel tbl = buildTableModel(rs);
+		ArrayList<Kunde> returnList = new ArrayList<Kunde>();
+		
+		
+		//Kunde(int kunde_ID, String vorname, String nachname, int plz,
+		//String ort, String strasse, String hausnummer) {
+		
+		for(int rowID = 0; rowID < tbl.getRowCount(); rowID ++){
+			returnList.add(new Kunde((Integer)tbl.getValueAt(rowID,0)
+					,(String)tbl.getValueAt(rowID,1)
+					,(String)tbl.getValueAt(rowID,2)
+					,(Integer)tbl.getValueAt(rowID,3)
+					,(String)tbl.getValueAt(rowID,4)
+					,(String)tbl.getValueAt(rowID,5)
+					,(String)tbl.getValueAt(rowID,6)));
+			
+			
+		} 
+		
+		
+		
+		return returnList;
 	}
 	
 	

@@ -1,11 +1,13 @@
 package gui.home;
 
+import general.Kunde;
 import gui.Colorscheme;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -13,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import controller.c_kunde;
 
 public class KfZAnlegen extends JFrame {
 
@@ -82,9 +86,18 @@ public class KfZAnlegen extends JFrame {
 		lblKunde.setBounds(10, 103, 46, 14);
 		contentPane.add(lblKunde);
 		
-		JComboBox cmbBxKunde = new JComboBox();
+		
+		
+		
+		JComboBox<Kunde> cmbBxKunde = new JComboBox<>();
+		
+		for(Kunde k : c_kunde.getInstance().getKundeList()){
+			cmbBxKunde.addItem(k);
+		}
+		
+		
 		cmbBxKunde.setMaximumRowCount(24);
-		cmbBxKunde.setBounds(139, 100, 28, 20);
+		cmbBxKunde.setBounds(139, 100, 280, 20);
 		contentPane.add(cmbBxKunde);
 		
 		JButton btnKfzAnlegen = new JButton("KfZ anlegen");

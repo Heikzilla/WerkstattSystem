@@ -81,5 +81,12 @@ public class Kunde {
 	public void setHausnummer(String hausnummer) {
 		this.hausnummer = hausnummer;
 	}
+	
+	@Override
+	public String toString(){
+		
+		return nachname + ", " + vorname;
+	}
+	
 
 }
