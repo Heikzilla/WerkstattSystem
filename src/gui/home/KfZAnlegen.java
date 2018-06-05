@@ -25,6 +25,7 @@ public class KfZAnlegen extends JFrame {
 	private JTextField txtFldMarke;
 	private JTextField txtFldModell;
 	private JTextField txtFldKennzeichen;
+	private static KfZAnlegen frame;
 
 	/**
 	 * Launch the application.
@@ -33,7 +34,7 @@ public class KfZAnlegen extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					KfZAnlegen frame = new KfZAnlegen();
+					frame = new KfZAnlegen();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -110,6 +111,7 @@ public class KfZAnlegen extends JFrame {
 				neuesKfz.setKennzeichen(txtFldKennzeichen.getText());
 				neuesKfz.setKunde_ID(((Kunde)cmbBxKunde.getSelectedItem()).getKunde_ID());
 				c_kfz.getInstance().addKfzToDB(neuesKfz);
+				frame.dispose();
 			}
 		});
 		btnKfzAnlegen.setBounds(81, 131, 89, 23);

@@ -54,7 +54,18 @@ public class c_auftrag {
     
     public DefaultTableModel getAuftragListAsTable(){
     	
-    	String sql = "SELECT * FROM auftraege";
+    	String sql = "SELECT kfz.marke AS Marke"
+	 +", kfz.modell AS Modell"
+	 +", kfz.kennzeichen AS 'Kennz.'"
+	 +", auftraege.arbeiten AS Bemerkung"
+	 +", CONCAT(kunde.vorname,' ', kunde.nachname) AS 'K. Name'"
+	 +", kunde.kunde_ID AS 'K. ID'"
+	 +", CASE WHEN auftraege.erledigt = true THEN 'Erledigt' ELSE 'Offen' END AS 'Status'"
+	 +" FROM auftraege"
+	 +" INNER JOIN kfz ON auftraege.kfz_ID = kfz.kfz_ID"
+	 +" INNER JOIN kunde ON kunde.kunde_ID = kfz.kunde_ID";
+    	
+    	System.out.println(sql);
     	
     	return DB.getInstance().tableSelect(sql);
     	

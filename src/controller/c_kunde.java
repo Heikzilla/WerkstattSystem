@@ -1,5 +1,6 @@
 package controller;
 
+import general.Kfz;
 import general.Kunde;
 
 import java.util.ArrayList;
@@ -31,6 +32,22 @@ public class c_kunde {
 
         return DB.getInstance().kundeSelect("SELECT * FROM kunde");
 
+    }
+    
+    public void addKundeToDB(Kunde neuerKunde){
+    	
+    	String sql = "INSERT INTO kunde "
+				+ "(vorname, nachname, ort, plz, strasse, hausnummer) VALUES "
+				+ " (" + "'" + neuerKunde.getVorname()+ "'" + 
+				", " + "'" + neuerKunde.getNachname() + "'" + 
+				", " + "'" + neuerKunde.getOrt() + "'" + 
+				", " + neuerKunde.getPlz() + 
+				", " + "'" + neuerKunde.getStrasse() + "'" + 
+				", " + "'" + neuerKunde.getHausnummer() + "'" +
+				");";
+		
+		
+		DB.getInstance().tableInsert(sql);
     }
 	
 }

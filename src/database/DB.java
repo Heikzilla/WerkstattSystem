@@ -163,7 +163,7 @@ public class DB {
 	    Vector<String> columnNames = new Vector<String>();
 	    int columnCount = metaData.getColumnCount();
 	    for (int column = 1; column <= columnCount; column++) {
-	        columnNames.add(metaData.getColumnName(column));
+	        columnNames.add(metaData.getColumnName(column).substring(0, 1).toUpperCase()+metaData.getColumnName(column).substring(1));
 	    }
 
 	    Vector<Vector<Object>> data = new Vector<Vector<Object>>();

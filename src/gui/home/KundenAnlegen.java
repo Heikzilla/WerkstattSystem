@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import controller.c_kunde;
 import database.DB;
 
 public class KundenAnlegen extends JFrame {
@@ -25,6 +26,7 @@ public class KundenAnlegen extends JFrame {
 	private JTextField txtFldStrasse;
 	private JTextField txtFldHausnummer;
 	private JTextField txtFldPLZ;
+	private static KundenAnlegen frame;
 
 	/**
 	 * Launch the application.
@@ -33,7 +35,7 @@ public class KundenAnlegen extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					KundenAnlegen frame = new KundenAnlegen();
+					frame = new KundenAnlegen();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -122,18 +124,8 @@ public class KundenAnlegen extends JFrame {
 				
 				// neuerKunde in Datenbank speichern
 				
-				String sql = "INSERT INTO kunde "
-						+ "(vorname, nachname, ort, plz, strasse, hausnummer) VALUES "
-						+ " (" + "'" + neuerKunde.getVorname()+ "'" + 
-						", " + "'" + neuerKunde.getNachname() + "'" + 
-						", " + "'" + neuerKunde.getOrt() + "'" + 
-						", " + neuerKunde.getPlz() + 
-						", " + "'" + neuerKunde.getStrasse() + "'" + 
-						", " + "'" + neuerKunde.getHausnummer() + "'" +
-						");";
-				System.out.println(sql);
-				
-				DB.getInstance().tableInsert(sql);
+				c_kunde.getInstance().addKundeToDB(neuerKunde);
+				frame.dispose();
 			}
 		});
 		btnKundeAnlegen.setBounds(92, 172, 103, 23);
