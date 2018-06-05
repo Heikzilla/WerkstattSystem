@@ -50,7 +50,7 @@ public class KundenAnlegen extends JFrame {
 	public KundenAnlegen() {
 		setTitle("Kunden anlegen");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 248, 257);
+		setBounds(100, 100, 279, 263);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(Colorscheme.controlLightGray);
@@ -58,56 +58,56 @@ public class KundenAnlegen extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblVorname = new JLabel("Vorname:");
-		lblVorname.setBounds(10, 11, 46, 14);
+		lblVorname.setBounds(10, 11, 58, 14);
 		contentPane.add(lblVorname);
 		
 		JLabel lblNachname = new JLabel("Nachname:");
-		lblNachname.setBounds(10, 36, 58, 14);
+		lblNachname.setBounds(10, 36, 68, 14);
 		contentPane.add(lblNachname);
 		
 		JLabel lblOrt = new JLabel("Ort:");
-		lblOrt.setBounds(10, 61, 46, 14);
+		lblOrt.setBounds(10, 61, 58, 14);
 		contentPane.add(lblOrt);
 		
 		JLabel lblPlz = new JLabel("PLZ:");
-		lblPlz.setBounds(10, 86, 46, 14);
+		lblPlz.setBounds(10, 86, 58, 14);
 		contentPane.add(lblPlz);
 		
 		JLabel lblStrasse = new JLabel("Strasse:");
-		lblStrasse.setBounds(10, 111, 46, 14);
+		lblStrasse.setBounds(10, 111, 58, 14);
 		contentPane.add(lblStrasse);
 		
 		JLabel lblHausnummer = new JLabel("Hausnummer:");
-		lblHausnummer.setBounds(10, 136, 68, 14);
+		lblHausnummer.setBounds(10, 136, 86, 14);
 		contentPane.add(lblHausnummer);
 		
 		txtFldVorname = new JTextField();
-		txtFldVorname.setBounds(109, 8, 86, 20);
+		txtFldVorname.setBounds(138, 8, 86, 20);
 		contentPane.add(txtFldVorname);
 		txtFldVorname.setColumns(10);
 		
 		txtFldNachname = new JTextField();
-		txtFldNachname.setBounds(109, 33, 86, 20);
+		txtFldNachname.setBounds(138, 33, 86, 20);
 		contentPane.add(txtFldNachname);
 		txtFldNachname.setColumns(10);
 		
 		txtFldOrt = new JTextField();
-		txtFldOrt.setBounds(109, 58, 86, 20);
+		txtFldOrt.setBounds(138, 58, 86, 20);
 		contentPane.add(txtFldOrt);
 		txtFldOrt.setColumns(10);
 		
 		txtFldPLZ = new JTextField();
 		txtFldPLZ.setColumns(10);
-		txtFldPLZ.setBounds(109, 83, 86, 20);
+		txtFldPLZ.setBounds(138, 83, 86, 20);
 		contentPane.add(txtFldPLZ);
 		
 		txtFldStrasse = new JTextField();
-		txtFldStrasse.setBounds(109, 108, 86, 20);
+		txtFldStrasse.setBounds(138, 108, 86, 20);
 		contentPane.add(txtFldStrasse);
 		txtFldStrasse.setColumns(10);
 		
 		txtFldHausnummer = new JTextField();
-		txtFldHausnummer.setBounds(109, 133, 86, 20);
+		txtFldHausnummer.setBounds(138, 133, 86, 20);
 		contentPane.add(txtFldHausnummer);
 		txtFldHausnummer.setColumns(10);
 		
@@ -128,7 +128,7 @@ public class KundenAnlegen extends JFrame {
 				frame.dispose();
 			}
 		});
-		btnKundeAnlegen.setBounds(80, 172, 115, 23);
+		btnKundeAnlegen.setBounds(99, 164, 125, 23);
 		contentPane.add(btnKundeAnlegen);
 		
 		
