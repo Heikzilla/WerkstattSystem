@@ -35,7 +35,7 @@ class AuftragPanel extends JPanel {
 		setMinimumSize(getPreferredSize());
 		initComp();
 		setLayout(new GridLayout(1, 1));
-		// setBackground(Color.RED);
+		
 
 	}
 
