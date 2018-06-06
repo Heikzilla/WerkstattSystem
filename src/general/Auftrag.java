@@ -5,9 +5,7 @@ public class Auftrag {
 	private String arbeiten;
 	private boolean erledigt;
 	private int kfz_ID;
-	
-	
-	
+
 	public Auftrag() {
 		super();
 	}
@@ -51,6 +49,5 @@ public class Auftrag {
 	public void setKfz_ID(int kfz_ID) {
 		this.kfz_ID = kfz_ID;
 	}
-	
-	
+
 }

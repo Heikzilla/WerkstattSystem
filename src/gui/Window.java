@@ -11,83 +11,78 @@ import javax.swing.WindowConstants;
 
 public class Window extends JFrame {
 
+	
+	private static final long serialVersionUID = 1L;
+	private static Window INSTANCE;
+	private static int HEIGHT;
+	private static int WIDTH;
+	private static int SCREEN_WIDTH;
+	private static int SCREEN_HEIGHT;
+	private static Point LOCATION;
 
-    private static Window INSTANCE;
-    private static int HEIGHT;
-    private static int WIDTH;
-    private static int SCREEN_WIDTH;
-    private static int SCREEN_HEIGHT;
-    private static Point LOCATION;
+	private Window() {
 
+		initScreenVars();
+		setWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+		centerWindow();
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setLayout(new BorderLayout());
+		// pack();
 
-    private Window(){
+	}
 
-    	initScreenVars();
-        setWindowSize(SCREEN_WIDTH,SCREEN_HEIGHT);
-        centerWindow();
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
-        //pack();
+	public static Window getInstance() {
 
-    }
+		if (INSTANCE == null) {
 
-    public static Window getInstance(){
+			INSTANCE = new Window();
 
-        if(INSTANCE == null){
+		}
 
-            INSTANCE = new Window();
+		return INSTANCE;
 
-        }
+	}
 
-        return INSTANCE;
+	public void setWindowSize(int width, int height) {
 
-    }
+		WIDTH = width;
+		HEIGHT = height;
 
-    public void setWindowSize(int width, int height){
+		setSize(new Dimension(WIDTH, HEIGHT));
 
-    	
-    	
-        WIDTH = width;
-        HEIGHT = height;
+	}
 
-        setSize(new Dimension(WIDTH,HEIGHT));
+	public void centerWindow() {
 
-    }
+		initScreenVars();
 
+		LOCATION = new Point(SCREEN_WIDTH / 2 - WIDTH / 2, SCREEN_HEIGHT / 2
+				- HEIGHT / 2);
+		LOCATION = new Point(0, 0);
+		setLocation(LOCATION);
 
-    public void centerWindow(){
+	}
 
-        
-    	initScreenVars();
+	private void initScreenVars() {
 
-        LOCATION = new Point(SCREEN_WIDTH/2-WIDTH/2,SCREEN_HEIGHT/2-HEIGHT/2);
-        setLocation(LOCATION);
+		GraphicsEnvironment defTK = GraphicsEnvironment
+				.getLocalGraphicsEnvironment();
+		SCREEN_WIDTH = defTK.getMaximumWindowBounds().width;
+		SCREEN_HEIGHT = defTK.getMaximumWindowBounds().height;
 
-    }
+	}
 
+	public void toggleVisible() {
 
-    private void initScreenVars(){
+		setVisible(!isVisible());
 
-    	GraphicsEnvironment defTK = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        SCREEN_WIDTH = defTK.getMaximumWindowBounds().width;
-        SCREEN_HEIGHT = defTK.getMaximumWindowBounds().height;
+	}
 
+	public void loadView(JPanel pane) {
 
-    }
+		getContentPane().removeAll();
+		getContentPane().add(pane, BorderLayout.LINE_START);
 
-    public void toggleVisible(){
-
-        setVisible(!isVisible());
-
-    }
-
-
-    public void loadView(JPanel pane){
-
-        getContentPane().removeAll();
-        getContentPane().add(pane, BorderLayout.LINE_START);
-
-    }
-
+	}
 
 }

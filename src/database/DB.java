@@ -1,14 +1,11 @@
 package database;
 
-import general.Kunde;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
@@ -16,35 +13,28 @@ import javax.swing.table.DefaultTableModel;
 public class DB {
 
 	/*
-	 * Handelt die eigene Instance.
-	 * Es kann keine neue Instance erstellt werden.
+	 * Handelt die eigene Instance. Es kann keine neue Instance erstellt werden.
 	 * Aufruf ueber DB.getInstance()
 	 * 
 	 * Zur Initialisierung muss connectToDB() aufgerufen werden.
-	 * 
-	 * 
-	 * 
 	 */
-	
-	private static DB instance;	
+
+	private static DB instance;
 	private static String serverName;
 	private static String dbName;
 	private static String userName;
 	private static String userPassword;
 	private static String connectionString;
 	private static int serverPort = 0;
-	
-	
+
 	private static final String server = "localhost";
 	private static final String database = "autoreparaturDB";
 	private static final String user = "root";
 	private static final String password = "";
 	private static final int port = 3306;
-	
-	
-	
-	private DB(){
-		
+
+	private DB() {
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 		} catch (InstantiationException e) {
@@ -57,84 +47,81 @@ public class DB {
 
 			e.printStackTrace();
 		}
-		
+
 		connectToDB(server, port, database, user, password);
-		
+
 	}
-	
-	public static DB getInstance(){
-		
-		if(instance == null){
-			
+
+	public static DB getInstance() {
+
+		if (instance == null) {
+
 			instance = new DB();
 		}
-		
+
 		return instance;
-		
+
 	}
-	
-	
-	public void connectToDB(String server, int port, String database, String user, String password){
-		
+
+	public void connectToDB(String server, int port, String database,
+			String user, String password) {
+
 		serverName = server;
 		dbName = database;
 		serverPort = port;
 		userName = user;
 		userPassword = password;
-		
-		connectionString = "jdbc:mysql://"
-						+serverName
-						+":"
-						+String.valueOf(serverPort)
-						+"/"
-						+dbName;
+
+		connectionString = "jdbc:mysql://" + serverName + ":"
+				+ String.valueOf(serverPort) + "/" + dbName;
 
 	}
-	
-	public void tableInsert(String sql){
-		
-		if(!isConnected())
+
+	public void tableInsert(String sql) {
+
+		if (!isConnected())
 			return;
-		
+
 		Connection con = null;
 		PreparedStatement st = null;
 		try {
-			con = DriverManager.getConnection(connectionString, userName, userPassword);
+			con = DriverManager.getConnection(connectionString, userName,
+					userPassword);
 			st = con.prepareStatement(sql);
 			st.execute();
-			
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
-			
+
 				st.close();
 				con.close();
-				
+
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}			
+			}
 		}
-		
+
 	}
-	
-	public DefaultTableModel tableSelect(String sql){
+
+	public DefaultTableModel tableSelect(String sql) {
+
 		
-		System.out.println(isConnected());
-		
-		if(!isConnected())
+
+		if (!isConnected())
 			return null;
-		
+
 		Connection con = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		DefaultTableModel tb = null;
 		try {
-			con = DriverManager.getConnection(connectionString, userName, userPassword);
+			con = DriverManager.getConnection(connectionString, userName,
+					userPassword);
 			st = con.prepareStatement(sql);
 			rs = st.executeQuery();
-			
+
 			tb = buildTableModel(rs);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -143,67 +130,58 @@ public class DB {
 				rs.close();
 				st.close();
 				con.close();
-				
+
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}			
+			}
 		}
-		System.out.println(tb.getValueAt(0, 0));
 		
+
 		return tb;
-		
+
 	}
-	
+
 	private static DefaultTableModel buildTableModel(ResultSet rs)
-	        throws SQLException {
+			throws SQLException {
 
-	    ResultSetMetaData metaData = rs.getMetaData();
+		ResultSetMetaData metaData = rs.getMetaData();
 
-	    
-	    Vector<String> columnNames = new Vector<String>();
-	    int columnCount = metaData.getColumnCount();
-	    for (int column = 1; column <= columnCount; column++) {
-	        columnNames.add(metaData.getColumnName(column).substring(0, 1).toUpperCase()+metaData.getColumnName(column).substring(1));
-	    }
+		Vector<String> columnNames = new Vector<String>();
+		int columnCount = metaData.getColumnCount();
+		for (int column = 1; column <= columnCount; column++) {
+			columnNames.add(metaData.getColumnName(column).substring(0, 1)
+					.toUpperCase()
+					+ metaData.getColumnName(column).substring(1));
+		}
 
-	    Vector<Vector<Object>> data = new Vector<Vector<Object>>();
-	    while (rs.next()) {
-	        Vector<Object> vector = new Vector<Object>();
-	        for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
-	            vector.add(rs.getObject(columnIndex));
-	        }
-	        data.add(vector);
-	    }
-	    
-	    
+		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+		while (rs.next()) {
+			Vector<Object> vector = new Vector<Object>();
+			for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+				vector.add(rs.getObject(columnIndex));
+			}
+			data.add(vector);
+		}
 
-	    return new DefaultTableModel(data, columnNames);
+		return new DefaultTableModel(data, columnNames);
 
 	}
-	
+
 	/*
 	 * Gibt den Skalarwert fuer das ausgefuehrte Select aus
 	 */
-	public Object objectSelect(String sql){
-	
-		
+	public Object objectSelect(String sql) {
+
 		return tableSelect(sql).getValueAt(1, 0);
-		
-		
+
 	}
-	
-	
-	private boolean isConnected(){
-		
-		return serverName != null
-				&& dbName != null 
-				&& userName != null 
-				&& userPassword != null 
-				&& connectionString != null 
+
+	private boolean isConnected() {
+
+		return serverName != null && dbName != null && userName != null
+				&& userPassword != null && connectionString != null
 				&& serverPort != 0;
-		
+
 	}
-	
-	
-	
+
 }
