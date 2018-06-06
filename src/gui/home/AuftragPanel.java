@@ -31,7 +31,7 @@ class AuftragPanel extends JPanel {
 
 		this.width = width;
 		this.height = height;
-		setPreferredSize(new Dimension(width, height));
+		setPreferredSize(new Dimension(this.width, this.height));
 		setMinimumSize(getPreferredSize());
 		initComp();
 		setLayout(new GridLayout(1, 1));
@@ -63,15 +63,18 @@ class AuftragPanel extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(list);
 		scrollPane.setBorder(list.getBorder());
 		scrollPane.setMinimumSize(getPreferredSize());
+		scrollPane.setMaximumSize(getPreferredSize());
 		scrollPane
 				.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane
 				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
 		add(scrollPane);
+		
+		
 
-		list.setPreferredScrollableViewportSize(new Dimension(width, height));
-		list.setFillsViewportHeight(true);
+		//list.setPreferredScrollableViewportSize(new Dimension(width, height));
+		//list.setFillsViewportHeight(true);
 
 	}
 
@@ -87,7 +90,7 @@ class AuftragPanel extends JPanel {
 
 	}
 
-	public void addSelectionListener() {
+	private void addSelectionListener() {
 
 		list.getSelectionModel().addListSelectionListener(
 				new ListSelectionListener() {

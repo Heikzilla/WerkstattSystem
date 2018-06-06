@@ -23,11 +23,11 @@ public class Window extends JFrame {
 	private Window() {
 
 		initScreenVars();
-		setWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+		setWindowSize(1200, 600);
 		centerWindow();
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
-		// pack();
+
 
 	}
 
@@ -48,7 +48,7 @@ public class Window extends JFrame {
 		WIDTH = width;
 		HEIGHT = height;
 
-		setSize(new Dimension(WIDTH, HEIGHT));
+		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
 	}
 
@@ -58,7 +58,7 @@ public class Window extends JFrame {
 
 		LOCATION = new Point(SCREEN_WIDTH / 2 - WIDTH / 2, SCREEN_HEIGHT / 2
 				- HEIGHT / 2);
-		LOCATION = new Point(0, 0);
+		
 		setLocation(LOCATION);
 
 	}
@@ -82,6 +82,8 @@ public class Window extends JFrame {
 
 		getContentPane().removeAll();
 		getContentPane().add(pane, BorderLayout.LINE_START);
+		getContentPane().revalidate();
+		pack();
 
 	}
 

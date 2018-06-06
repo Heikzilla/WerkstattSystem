@@ -12,12 +12,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class DB {
 
-	/*
-	 * Handelt die eigene Instance. Es kann keine neue Instance erstellt werden.
-	 * Aufruf ueber DB.getInstance()
-	 * 
-	 * Zur Initialisierung muss connectToDB() aufgerufen werden.
-	 */
 
 	private static DB instance;
 	private static String serverName;

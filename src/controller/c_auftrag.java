@@ -47,12 +47,12 @@ public class c_auftrag {
 
 	public DefaultTableModel getAuftragListAsTable() {
 
-		String sql = "SELECT auftraege.Auftrag_ID AS 'Auftrag Nr'"
+		String sql = "SELECT auftraege.Auftrag_ID+0 AS 'Auftrags Nr'"
 				+ ", kfz.marke AS Marke" + ", kfz.modell AS Modell"
 				+ ", kfz.kennzeichen AS 'Kennz.'"
 				+ ", auftraege.arbeiten AS Bemerkung"
 				+ ", CONCAT(kunde.vorname,' ', kunde.nachname) AS 'K. Name'"
-				+ ", kunde.kunde_ID AS 'K. ID'" + " FROM auftraege"
+				+ ", kunde.kunde_ID+0 AS 'K. ID'" + " FROM auftraege"
 				+ " INNER JOIN kfz ON auftraege.kfz_ID = kfz.kfz_ID"
 				+ " INNER JOIN kunde ON kunde.kunde_ID = kfz.kunde_ID"
 				+ " WHERE erledigt = false";

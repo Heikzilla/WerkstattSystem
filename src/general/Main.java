@@ -1,8 +1,11 @@
 package general;
 
-import database.DB;
 import gui.Window;
 import gui.home.MainPanel;
+
+import javax.swing.JFrame;
+
+import database.DB;
 
 public class Main {
 
@@ -17,6 +20,7 @@ public class Main {
 		DB.getInstance().connectToDB(server, port, database, user, password);
 		Window.getInstance().loadView(new MainPanel());
 		Window.getInstance().toggleVisible();
+		Window.getInstance().setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 	}
 
