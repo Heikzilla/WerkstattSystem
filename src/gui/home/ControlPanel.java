@@ -108,7 +108,7 @@ public class ControlPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				int row = AuftragPanel.getTable().getSelectedRow();
-				int auftrag_ID = (int) AuftragPanel.getTable().getValueAt(row,
+				long auftrag_ID = (long) AuftragPanel.getTable().getValueAt(row,
 						0);
 				String filter = " WHERE Auftrag_ID = "
 						+ String.valueOf(auftrag_ID);
