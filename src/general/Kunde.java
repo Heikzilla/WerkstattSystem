@@ -2,6 +2,10 @@ package general;
 
 public class Kunde {
 
+	public Kunde() {
+		super();
+	}
+
 	private int kunde_ID;
 	private String vorname;
 	private String nachname;
@@ -9,10 +13,10 @@ public class Kunde {
 	private String ort;
 	private String strasse;
 	private String hausnummer;
-	
+
 	public Kunde(int kunde_ID, String vorname, String nachname, int plz,
 			String ort, String strasse, String hausnummer) {
-		
+
 		this.kunde_ID = kunde_ID;
 		this.vorname = vorname;
 		this.nachname = nachname;
@@ -21,7 +25,7 @@ public class Kunde {
 		this.strasse = strasse;
 		this.hausnummer = hausnummer;
 	}
-	
+
 	public int getKunde_ID() {
 		return kunde_ID;
 	}
@@ -76,6 +80,12 @@ public class Kunde {
 
 	public void setHausnummer(String hausnummer) {
 		this.hausnummer = hausnummer;
+	}
+
+	@Override
+	public String toString() {
+
+		return nachname + ", " + vorname;
 	}
 
 }

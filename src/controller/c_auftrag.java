@@ -4,47 +4,82 @@ import general.Auftrag;
 
 import java.util.ArrayList;
 
+import javax.swing.table.DefaultTableModel;
+
+import database.DB;
+
 public class c_auftrag {
 
-    private static c_auftrag INSTANCE;
+	private static c_auftrag INSTANCE;
 
+	public static c_auftrag getInstance() {
 
-    public static c_auftrag getInstance(){
+		if (INSTANCE == null) {
 
-        if(INSTANCE == null){
+			INSTANCE = new c_auftrag();
 
-            INSTANCE = new c_auftrag();
+		}
 
-        }
+		return INSTANCE;
 
-        return INSTANCE;
+	}
 
-    }
+	public ArrayList<Auftrag> getAuftragList(String filter) {
 
+		String sql = "SELECT * FROM auftraege " + filter;
+		DefaultTableModel tbl = DB.getInstance().tableSelect(sql);
 
-    public ArrayList<Auftrag> getAuftragList(){
+		ArrayList<Auftrag> returnList = new ArrayList<>();
 
-        //FOR TESTING REMOVED
-        //return new ArrayList<Auftrag>();
+		
 
-        return randomAuftragList();
+		for (int rowID = 0; rowID < tbl.getRowCount(); rowID++) {
+			returnList.add(new Auftrag((Integer) tbl.getValueAt(rowID, 0) // Auftrag_ID
+					, (String) tbl.getValueAt(rowID, 1) // Arbeiten
+					, (Boolean) tbl.getValueAt(rowID, 3) // Erledigt
+					, (Integer) tbl.getValueAt(rowID, 2))// Kfz_ID
+					);
+		}
 
-    }
+		return returnList;
 
+	}
 
-    //TESTING
-    private ArrayList<Auftrag> randomAuftragList(){
+	public DefaultTableModel getAuftragListAsTable() {
 
-        ArrayList<Auftrag> ret = new ArrayList<>();
-        ret.add(new Auftrag(0,"TEST 1", false, 0));
-        ret.add(new Auftrag(1,"TEST 2", false, 1));
-        ret.add(new Auftrag(2,"TEST 3", true, 1));
-        ret.add(new Auftrag(3,"TEST 4", false, 2));
-        ret.add(new Auftrag(4,"TEST 5", true, 3));
-        ret.add(new Auftrag(5,"TEST 6", false, 4));
+		String sql = "SELECT auftraege.Auftrag_ID+0 AS 'Auftrags Nr'"
+				+ ", kfz.marke AS Marke" + ", kfz.modell AS Modell"
+				+ ", kfz.kennzeichen AS 'Kennz.'"
+				+ ", auftraege.arbeiten AS Bemerkung"
+				+ ", CONCAT(kunde.vorname,' ', kunde.nachname) AS 'K. Name'"
+				+ ", kunde.kunde_ID+0 AS 'K. ID'" + " FROM auftraege"
+				+ " INNER JOIN kfz ON auftraege.kfz_ID = kfz.kfz_ID"
+				+ " INNER JOIN kunde ON kunde.kunde_ID = kfz.kunde_ID"
+				+ " WHERE erledigt = false";
 
-        return ret;
+		
 
-    }
+		return DB.getInstance().tableSelect(sql);
+
+	}
+
+	public void addAuftragToDB(Auftrag neuerAuftrag) {
+
+		String sql = "INSERT INTO auftraege "
+				+ "(arbeiten, kfz_ID, erledigt) VALUES " + " (" + "'"
+				+ neuerAuftrag.getArbeiten() + "'" + ", " + "'"
+				+ neuerAuftrag.getKfz_ID() + "'" + ", false );";
+
+		DB.getInstance().tableInsert(sql);
+	}
+
+	public void setAsErledigt(Auftrag selectedAuftrag) {
+
+		String sql = " UPDATE auftraege " + " SET erledigt = 1 "
+				+ " WHERE Auftrag_ID = "
+				+ String.valueOf(selectedAuftrag.getAuftrag_ID());
+
+		DB.getInstance().tableInsert(sql);
+	}
 
 }
